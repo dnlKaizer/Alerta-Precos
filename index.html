@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>Autenticar Usuário</title>
+</head>
+
+<body class="w-50 mx-auto">
+    <div class="container">
+        <h1 class="text-center border-bottom mt-3 py-2 mb-5">Autenticar Usuário</h1>
+        <form id="form" action="#" method="post">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <label class="form-label" for="login">Login</label>
+                    <input class="form-control" id="login" name="login" type="text" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <label class="form-label" for="senha">Senha</label>
+                    <input class="form-control" id="senha" name="senha" type="password" required>
+                </div>
+            </div>
+            <div class="d-flex flex-row-reverse">
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/jquery.min.js"></script> <!-- Adicionando JQuery -->
+    <script src="js/jquery.validate.min.js"></script> <!-- Adicionando plugin de validação -->
+
+    <script src="js/bootstrap.js"></script> <!-- Adicionando bootstrap -->
+    <script src="js/index.js"></script>
+</body>
+
+</html>

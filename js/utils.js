@@ -12,3 +12,8 @@ function formatarPreco(valor) {
     });
     return formato.format(valor);
 }
+
+function logout() {
+    localStorage.clear();
+    window.location.href = "index.html";
+}

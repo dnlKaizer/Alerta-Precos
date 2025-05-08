@@ -9,12 +9,12 @@
 <body onload="atualizaTabela()">
     <div>
         <header class="d-flex flex-row bg-black text-white fw-bold">
-            <!-- <div class="py-2 px-3">Criptomoedas</div> -->
             <a class="py-2 px-3 text-white text-decoration-none" href="menu.html">Menu</a>
         </header>
 
         <div class="container">
             <h1 class="text-center border-bottom mt-3 py-2 mb-4">Criptomoedas</h1>
+            <h5 id="msg">Não foi possível encontrar produtos.</h5> 
             <table class="table my-5" id="tabela">
                 <thead>
                     <tr>
@@ -22,14 +22,7 @@
                         <th scope="col">Preço (R$)</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- <tr>
-                        <td class="d-flex align-items-center">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCDzBzv0xelHUJFWzZ47s3lAcxBmAMc7uNUg&s" alt="Ethereum" class="crypto-img">
-                            Ethereum (ETH)
-                        </td>
-                        <td>R$ 17.500,00</td>
-                    </tr> -->
+                <tbody id="tabela-body">
                 </tbody>
             </table>
         </div>
@@ -39,6 +32,7 @@
     <script src="js/jquery.validate.min.js"></script> <!-- Adicionando plugin de validação -->
 
     <script src="js/bootstrap.js"></script> <!-- Adicionando bootstrap -->
+    <script src="js/utils.js"></script>
     <script src="js/menu.js"></script>
 </body>
 </html>

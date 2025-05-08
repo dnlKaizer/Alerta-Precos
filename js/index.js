@@ -1,3 +1,11 @@
+// Verifica se o usuário está logado
+function verificarUser() {
+    const user = getUser();
+    if (user != null) {
+        window.location.href = "menu.html";
+    }
+}
+
 // Regras para validação de formulário de login
 $(document).ready(function () {
     $("#form").validate({
@@ -15,7 +23,7 @@ $(document).ready(function () {
     });
 });
 
-
+// Autentica formulário de login
 async function autenticar() {
     if ($("#form").valid()) {
         const login = $("#login").val();

@@ -3,3 +3,7 @@
     height: 30px;
     margin-right: 10px;
 }
+
+#tabela {
+    display: none;
+}

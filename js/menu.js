@@ -1,10 +1,4 @@
-function getUser() {
-    if (localStorage.getItem('user')) 
-        return JSON.parse(localStorage.getItem('user'));
-    else 
-        return null;
-}
-
+// Retorna produtos do odinline em função do usuário
 async function getProdutos(user) {
     try {
         const resposta = await fetch(`https://api-odinline.odiloncorrea.com/produto/${user.chave}/usuario`);
@@ -18,7 +12,7 @@ async function getProdutos(user) {
 }
 
 async function atualizaTabela() {
-    // apagarLinhas($("#tabela"));
+    apagarLinhas($("#tabela"));
 
     const user = getUser();
     if (user == null) return;
@@ -31,14 +25,7 @@ async function atualizaTabela() {
     });
 
     tabela.style.display = "table";
-}
-
-function formatarPreco(valor) {
-    const formato = new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-    });
-    return formato.format(valor);
+    msg.style.display = "none";
 }
 
 function adicionarLinha(cripto) {
@@ -60,9 +47,9 @@ function adicionarLinha(cripto) {
 	novaLinha.appendChild(valor);
 
 	// Adiciona a nova linha ao tbody
-	$("tbody").append(novaLinha);
+	$("#tabela-body").append(novaLinha);
 }
 
 function apagarLinhas() {
-    $("tbody").empty();
+    $("#tabela-body").empty();
 }

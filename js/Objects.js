@@ -16,3 +16,11 @@ class User {
         this.chave = chave;
     }
 }
+
+class Alerta {
+    constructor(id, valor, isCompra) {
+        this.id = id;
+        this.valor = valor;
+        this.isCompra = isCompra;
+    }
+}

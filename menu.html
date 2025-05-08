@@ -19,14 +19,14 @@
             <h1 class="text-center border-bottom mt-3 py-2 mb-4">Criptomoedas</h1>
             <h5 id="msg">Não foi possível encontrar produtos.</h5>
             <div class="mt-5">
-                <img class="alert_img" src="img/alerta.png" alt="Ícone de alerta"> 
+                <img class="alert_img" src="img/alerta.png" alt="Ícone de alerta">
                 : Criar um alerta de preço
             </div>
             <table class="table my-1" id="tabela">
                 <thead>
                     <tr>
                         <th scope="col">Nome</th>
-                        <th scope="col">Preço (R$)</th>
+                        <th scope="col">Preço</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -36,12 +36,56 @@
         </div>
     </div>
 
+    <div id="modal-form" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Criar alerta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <form id="form" action="#">
+                    <div class="modal-body">
+                        <div class="row mb-4">
+                            <div class="col-auto my-auto">
+                                <label class="form-label" for="preco-alerta">Preço</label>
+                            </div>
+                            <div class="col-auto">
+                                <input class="form-control" id="preco-alerta" name="preco-alerta" placeholder="R$ 0,00" type="text" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-check col-auto mx-3">
+                                <input class="form-check-input" type="radio" name="acao-alerta" id="radio-comprar"
+                                    value="comprar" checked>
+                                <label class="form-check-label" for="radio-comprar">
+                                    Comprar
+                                </label>
+                            </div>
+                            <div class="form-check col-auto">
+                                <input class="form-check-input" type="radio" name="acao-alerta" id="radio-notificar"
+                                    value="notificar">
+                                <label class="form-check-label" for="radio-notificar">
+                                    Notificar
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="js/jquery.min.js"></script> <!-- Adicionando JQuery -->
     <script src="js/jquery.validate.min.js"></script> <!-- Adicionando plugin de validação -->
+    <script src="js/jquery.maskMoney.min.js"></script> <!-- Adicionando plugin de máscara -->
 
     <script src="js/bootstrap.js"></script> <!-- Adicionando bootstrap -->
     <script src="js/utils.js"></script>
     <script src="js/Objects.js"></script>
     <script src="js/menu.js"></script>
 </body>
+
 </html>

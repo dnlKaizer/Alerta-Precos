@@ -33,3 +33,7 @@ td {
     display: flex;
     align-items: center;
 }
+
+form {
+    margin: 0;
+}

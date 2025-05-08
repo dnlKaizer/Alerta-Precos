@@ -26,6 +26,6 @@ function formatarPreco(valor) {
  * Desloga o usuário
  */
 function logout() {
-    localStorage.clear();
+    localStorage.removeItem("user");
     window.location.href = "index.html";
 }

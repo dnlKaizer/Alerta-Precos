@@ -1,3 +1,14 @@
+let idProduto = null;
+
+$("#preco-alerta").maskMoney({
+    prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false
+});
+
+$('#modal-form').submit(function(event) {
+    event.preventDefault(); // Impede o envio do formulário
+    criarAlerta();
+});
+
 /**
  * Retorna os produtos da Odinline 
  * em função do usuário
@@ -28,7 +39,7 @@ async function atualizaTabela() {
     const produtos = await getProdutos(user);
     if (produtos == null) return;
 
-    produtos.forEach(cripto => {
+    produtos.forEach((cripto) => {
         adicionarLinha(cripto);
     });
 
@@ -65,9 +76,15 @@ function adicionarLinha(cripto) {
     const alertImg = document.createElement("img");
     alertImg.src = "img/alerta.png";
     alertImg.classList = "alert_img";
-    alertImg.onclick = alertar;
+    alertImg.setAttribute("data-bs-toggle", "modal");
+    alertImg.setAttribute("data-bs-target", "#modal-form");
+    alertImg.addEventListener("click", () => {
+        idProduto = cripto.id; // produto pode vir de localStorage ou da linha da tabela
+    });
 
     const alert = document.createElement("td");
+    alert.style.display = "flex";
+    alert.style.justifyContent = "flex-end";
     alert.appendChild(alertImg);
 
     novaLinha.appendChild(alert);
@@ -83,6 +100,17 @@ function apagarLinhas() {
     $("#tabela-body").empty();
 }
 
-function alertar() {
-    
+function criarAlerta() {
+    let preco = parseFloat($("#preco-alerta").val().replace(/\./g, '').replace(',', '.'));
+    let acao = $('input[name="acao-alerta"]:checked').val() == 'comprar' ? true : false;
+    let alertas = localStorage.getItem("alertas") ? JSON.parse(localStorage.getItem("alertas")) : [];
+
+    const existe = alertas.some(alerta => alerta.id == idProduto);
+    if (existe) {
+        alert("Produto já possui alerta");
+        return;
+    }
+
+    alertas.push(new Alerta(idProduto, preco, acao));
+    localStorage.setItem("alertas", JSON.stringify(alertas));
 }

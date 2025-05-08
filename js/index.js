@@ -1,4 +1,6 @@
-// Verifica se o usuário está logado
+/**
+ * Verifica se o usuário está logado
+ */
 function verificarUser() {
     const user = getUser();
     if (user != null) {
@@ -23,7 +25,10 @@ $(document).ready(function () {
     });
 });
 
-// Autentica formulário de login
+/**
+ * Autentica os dados do formulário
+ * com a API da OdinLine
+ */
 async function autenticar() {
     if ($("#form").valid()) {
         const login = $("#login").val();

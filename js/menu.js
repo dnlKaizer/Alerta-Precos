@@ -1,4 +1,9 @@
-// Retorna produtos do odinline em função do usuário
+/**
+ * Retorna os produtos da Odinline 
+ * em função do usuário
+ * @param {User} user 
+ * @returns {Cripto[]}
+ */
 async function getProdutos(user) {
     try {
         const resposta = await fetch(`https://api-odinline.odiloncorrea.com/produto/${user.chave}/usuario`);
@@ -11,8 +16,11 @@ async function getProdutos(user) {
     }
 }
 
+/**
+ * Atualiza a tabela
+ */
 async function atualizaTabela() {
-    apagarLinhas($("#tabela"));
+    apagarLinhas();
 
     const user = getUser();
     if (user == null) return;
@@ -28,6 +36,10 @@ async function atualizaTabela() {
     msg.style.display = "none";
 }
 
+/**
+ * Adiciona uma linha na tabela
+ * @param {Cripto} cripto 
+ */
 function adicionarLinha(cripto) {
 	// Cria uma nova linha
 	const novaLinha = document.createElement("tr");
@@ -37,19 +49,40 @@ function adicionarLinha(cripto) {
     img.src = cripto.urlImagem;
     img.className = "crypto-img";
 
+    const div = document.createElement("div");
+    div.classList = "flex-center";
+    div.appendChild(img);
+	div.appendChild(document.createTextNode(cripto.descricao));
+
 	const nome = document.createElement("td");
-    nome.appendChild(img);
-	nome.appendChild(document.createTextNode(cripto.descricao));
+    nome.appendChild(div);
 	novaLinha.appendChild(nome);
 
 	const valor = document.createElement("td");
 	valor.textContent = formatarPreco(cripto.valor);
 	novaLinha.appendChild(valor);
 
+    const alertImg = document.createElement("img");
+    alertImg.src = "img/alerta.png";
+    alertImg.classList = "alert_img";
+    alertImg.onclick = alertar;
+
+    const alert = document.createElement("td");
+    alert.appendChild(alertImg);
+
+    novaLinha.appendChild(alert);
+
 	// Adiciona a nova linha ao tbody
 	$("#tabela-body").append(novaLinha);
 }
 
+/**
+ * Apaga as linhas da tabela
+ */
 function apagarLinhas() {
     $("#tabela-body").empty();
+}
+
+function alertar() {
+    
 }

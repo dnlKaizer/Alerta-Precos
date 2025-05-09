@@ -1,7 +1,7 @@
-let idProduto = null;
+let produtoAtual = null;
 
 $("#preco-alerta").maskMoney({
-    prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false
+    prefix:'R$ ', allowNegative: false, thousands:'.', decimal:',', affixesStay: false
 });
 
 $('#modal-form').submit(function(event) {
@@ -16,6 +16,7 @@ $('#modal-form').submit(function(event) {
  * @returns {Cripto[]}
  */
 async function getProdutos(user) {
+    if (user == null) return [];
     try {
         const resposta = await fetch(`https://api-odinline.odiloncorrea.com/produto/${user.chave}/usuario`);
         const produtos = await resposta.json();
@@ -23,7 +24,7 @@ async function getProdutos(user) {
 
     } catch (error) {
         alert("Erro ao buscar produtos.")
-        return null;
+        return [];
     }
 }
 
@@ -34,17 +35,21 @@ async function atualizaTabela() {
     apagarLinhas();
 
     const user = getUser();
-    if (user == null) return;
-
     const produtos = await getProdutos(user);
-    if (produtos == null) return;
+    if (produtos.length == 0) {
+        document.getElementById("tabela-menu").style.display = "none";
+        document.getElementById("legenda-menu").style.display = "none";
+        document.getElementById("msg-menu").style.display = "block";
+        return;
+    }
 
     produtos.forEach((cripto) => {
         adicionarLinha(cripto);
     });
 
-    tabela.style.display = "table";
-    msg.style.display = "none";
+    document.getElementById("tabela-menu").style.display = "table";
+    document.getElementById("legenda-menu").style.display = "block";
+    document.getElementById("msg-menu").style.display = "none";
 }
 
 /**
@@ -75,11 +80,16 @@ function adicionarLinha(cripto) {
 
     const alertImg = document.createElement("img");
     alertImg.src = "img/alerta.png";
-    alertImg.classList = "alert_img";
+    alertImg.classList = "icon pointer";
     alertImg.setAttribute("data-bs-toggle", "modal");
     alertImg.setAttribute("data-bs-target", "#modal-form");
     alertImg.addEventListener("click", () => {
-        idProduto = cripto.id; // produto pode vir de localStorage ou da linha da tabela
+        produtoAtual = cripto; // produto pode vir de localStorage ou da linha da tabela
+        const precoAtual = cripto.valor.toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+        document.querySelector("#preco-alerta").value = precoAtual;
     });
 
     const alert = document.createElement("td");
@@ -90,27 +100,31 @@ function adicionarLinha(cripto) {
     novaLinha.appendChild(alert);
 
 	// Adiciona a nova linha ao tbody
-	$("#tabela-body").append(novaLinha);
+	$("#tbody-menu").append(novaLinha);
 }
 
 /**
  * Apaga as linhas da tabela
  */
 function apagarLinhas() {
-    $("#tabela-body").empty();
+    $("#tbody-menu").empty();
+}
+
+function converterPrecoFloat(string) {
+    return parseFloat(string.replace(/\./g, '').replace(',', '.'));
 }
 
 function criarAlerta() {
-    let preco = parseFloat($("#preco-alerta").val().replace(/\./g, '').replace(',', '.'));
+    let preco = converterPrecoFloat($("#preco-alerta").val());
     let acao = $('input[name="acao-alerta"]:checked').val() == 'comprar' ? true : false;
     let alertas = localStorage.getItem("alertas") ? JSON.parse(localStorage.getItem("alertas")) : [];
 
-    const existe = alertas.some(alerta => alerta.id == idProduto);
+    const existe = alertas.some(alerta => alerta.id == produtoAtual.id);
     if (existe) {
         alert("Produto já possui alerta");
         return;
     }
 
-    alertas.push(new Alerta(idProduto, preco, acao));
+    alertas.push(new Alerta(produtoAtual.id, produtoAtual.descricao, preco, acao));
     localStorage.setItem("alertas", JSON.stringify(alertas));
 }

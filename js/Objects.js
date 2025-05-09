@@ -18,8 +18,9 @@ class User {
 }
 
 class Alerta {
-    constructor(id, valor, isCompra) {
+    constructor(id, nome, valor, isCompra) {
         this.id = id;
+        this.nome = nome;
         this.valor = valor;
         this.isCompra = isCompra;
     }

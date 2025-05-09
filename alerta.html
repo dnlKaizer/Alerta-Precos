@@ -1,0 +1,51 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Alertas</title>
+</head>
+<body onload="atualizaTabela()">
+    <div>
+        <header class="d-flex bg-black text-white fw-bold">
+            <a class="py-2 px-3 text-white text-decoration-none" href="menu.html">Menu</a>
+            <a class="py-2 px-3 text-white text-decoration-none me-auto" href="alerta.html">Alerta</a>
+            <button type="button" class="btn btn-light logout_btn my-auto me-2" onclick="logout()">
+                <img class="logout_img" src="img/logout.png" alt="Botão de logout">
+            </button>
+        </header>
+
+        <div class="container">
+            <h1 class="text-center border-bottom mt-3 py-2 mb-4">Alertas</h1>
+            <h5 id="msg-alerta">Não foi possível encontrar alertas.</h5>
+            <div id="legenda-alerta" class="mt-5 mb-3">
+                <img class="icon2" src="img/delete.png" alt="Ícone de alerta">
+                : Deletar um alerta de preço
+            </div>
+            <table class="table table-striped my-1 tabela" id="tabela-alerta">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-alerta">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script> <!-- Adicionando JQuery -->
+    <script src="js/jquery.validate.min.js"></script> <!-- Adicionando plugin de validação -->
+    <script src="js/jquery.maskMoney.min.js"></script> <!-- Adicionando plugin de máscara -->
+
+    <script src="js/bootstrap.js"></script> <!-- Adicionando bootstrap -->
+    <script src="js/utils.js"></script>
+    <script src="js/Objects.js"></script>
+    <script src="js/alerta.js"></script>
+</body>
+
+</html>

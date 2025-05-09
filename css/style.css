@@ -4,7 +4,7 @@
     margin-right: 10px;
 }
 
-#tabela {
+.tabela {
     display: none;
 }
 
@@ -19,9 +19,17 @@
     height: 22px;
 }
 
-.alert_img {
+.icon {
     width: 32px;
     height: 32px;
+}
+
+.icon2 {
+    width: 20px;
+    height: 20px;
+}
+
+.pointer {
     cursor: pointer;
 }
 
@@ -36,4 +44,45 @@ td {
 
 form {
     margin: 0;
+}
+
+#legenda-menu {
+    display: none;
+}
+
+#legenda-alerta {
+    display: none;
+}
+
+@media screen and (max-width: 480px) {
+    * {
+        font-size: small;
+    }
+
+    .crypto-img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+    
+    .logout_btn {
+        width: 24px;
+        height: 24px;
+        padding: 3px;
+    }
+    
+    .logout_img {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .icon {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .icon2 {
+        width: 16px;
+        height: 16px;
+    }
 }

@@ -25,3 +25,12 @@ class Alerta {
         this.isCompra = isCompra;
     }
 }
+
+class Compra {
+    constructor(id, nome, valor, data) {
+        this.id = id;
+        this.nome = nome;
+        this.valor = valor;
+        this.data = data;
+    }
+}

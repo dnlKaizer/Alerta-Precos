@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Alertas</title>
+    <title>Compras</title>
 </head>
 <body onload="atualizaTabela()">
     <div>
@@ -18,22 +18,17 @@
         </header>
 
         <div class="container">
-            <h1 class="text-center border-bottom mt-3 py-2 mb-4">Alertas</h1>
-            <h5 id="msg-alerta">Não foi possível encontrar alertas.</h5>
-            <div id="legenda-alerta" class="mt-5 mb-3">
-                <img class="icon2" src="img/delete.png" alt="Ícone de alerta">
-                : Deletar um alerta de preço
-            </div>
-            <table class="table table-striped my-1 tabela" id="tabela-alerta">
+            <h1 class="text-center border-bottom mt-3 py-2 mb-4">Compras</h1>
+            <h5 id="msg-compras">Não foram realizadas compras.</h5>
+            <table class="table table-striped my-1 tabela" id="tabela-compras">
                 <thead>
                     <tr>
                         <th scope="col">Nome</th>
                         <th scope="col">Preço</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col"></th>
+                        <th scope="col">Data</th>
                     </tr>
                 </thead>
-                <tbody id="tbody-alerta">
+                <tbody id="tbody-compras">
                 </tbody>
             </table>
         </div>
@@ -46,7 +41,7 @@
     <script src="js/bootstrap.js"></script> <!-- Adicionando bootstrap -->
     <script src="js/utils.js"></script>
     <script src="js/Objects.js"></script>
-    <script src="js/alerta.js"></script>
+    <script src="js/compras.js"></script>
     <script src="js/monitorar.js"></script>
 </body>
 
